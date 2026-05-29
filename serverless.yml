@@ -1,0 +1,44 @@
+service: arch-back-node-ms-hexag
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  environment:
+    USERS_TABLE: UsersTable
+    PROVIDER: aws
+
+plugins:
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    httpPort: 5010
+    host: 0.0.0.0
+
+functions:
+  createUser:
+    handler: dist/presentation/aws/handler.handler
+    events:
+      - httpApi:
+          path: /users
+          method: POST
+      - httpApi:
+          path: /health
+          method: GET
+
+resources:
+  Resources:
+    UsersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: UsersTable
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST

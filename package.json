@@ -1,0 +1,53 @@
+{
+  "name": "arch-back-node-ms-hexag",
+  "version": "0.2.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/presentation/http/server.js",
+    "deploy:aws": "serverless deploy",
+    "remove:aws": "serverless remove",
+    "test": "vitest run",
+    "test:watch": "vitest --watch",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
+    "test:unit": "vitest run tests/unit",
+    "test:integration": "vitest run tests/integration",
+    "test:architecture": "vitest run tests/architecture",
+    "test:contract": "vitest run tests/contract",
+    "test:performance": "vitest run tests/performance",
+    "test:all": "npm run test:unit && npm run test:integration && npm run test:architecture && npm run test:contract && npm run test:performance",
+    "lint": "eslint src tests --ext .ts,.js",
+    "lint:fix": "eslint src tests --ext .ts,.js --fix",
+    "format": "prettier --write \"src/**/*.{ts,js}\" \"tests/**/*.{ts,js}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,js}\" \"tests/**/*.{ts,js}\"",
+    "type-check": "tsc --noEmit",
+    "quality": "npm run lint && npm run format:check && npm run type-check && npm run test:coverage"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.637.0",
+    "fastify": "^4.28.1",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@azure/functions": "^4.0.0",
+    "@types/aws-lambda": "^8.10.138",
+    "@types/node": "^20.12.12",
+    "@types/uuid": "^9.0.8",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "@vitest/coverage-v8": "^3.2.4",
+    "@vitest/ui": "^3.2.4",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.30.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "prettier": "^3.3.3",
+    "serverless": "^3.39.0",
+    "serverless-offline": "^13.3.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3",
+    "vitest": "^3.2.4"
+  }
+}

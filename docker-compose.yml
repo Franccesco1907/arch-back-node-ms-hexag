@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    container_name: node_hexagonal_app
+    environment:
+      - PORT=5010
+      - PROVIDER=aws
+      - AWS_REGION=us-east-1
+      - USERS_TABLE=UsersTable
+      - DYNAMO_ENDPOINT=http://dynamodb-local:8000
+      - AUTO_CREATE_TABLE=true
+      - AWS_ACCESS_KEY_ID=dummy
+      - AWS_SECRET_ACCESS_KEY=dummy
+    command: sh -lc "npm run build && npm start"
+    depends_on:
+      - dynamodb-local
+    ports:
+      - "5010:5010"
+    volumes:
+      - .:/app
+      - /app/node_modules
+  dynamodb-local:
+    image: amazon/dynamodb-local:latest
+    container_name: dynamodb_local
+    ports:
+      - "8000:8000"
+    command: -jar DynamoDBLocal.jar -sharedDb
+    environment:
+      - AWS_REGION=us-east-1

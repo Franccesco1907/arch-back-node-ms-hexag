@@ -1,0 +1,39 @@
+### Health Check
+GET http://localhost:5010/health
+
+###
+
+### Listar todos los usuarios
+GET http://localhost:5010/users
+
+###
+
+### Crear un nuevo usuario
+POST http://localhost:5010/users
+Content-Type: application/json
+
+{
+  "name": "Juan Test",
+  "email": "juan.test@example.com"
+}
+
+###
+
+### Obtener usuario por ID (reemplaza USER_ID con un ID real)
+GET http://localhost:5010/users/1fa6edd6-8b4c-4378-8e3d-a78de5747afc
+
+###
+
+### Actualizar usuario (reemplaza USER_ID con un ID real)
+PUT http://localhost:5010/users/1fa6edd6-8b4c-4378-8e3d-a78de5747afc
+Content-Type: application/json
+
+{
+  "name": "Juan Updated",
+  "email": "juan.updated@example.com"
+}
+
+###
+
+### Eliminar usuario (reemplaza USER_ID con un ID real)
+DELETE http://localhost:5010/users/1fa6edd6-8b4c-4378-8e3d-a78de5747afc
