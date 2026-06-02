@@ -86,13 +86,8 @@ export default defineConfig({
     
     // Parallel execution
     pool: 'threads',
-    poolOptions: {
-      threads: {
-        singleThread: false,
-        maxThreads: 4,
-        minThreads: 1
-      }
-    },
+    maxWorkers: 4,
+    minWorkers: 1,
     
     // Retry failed tests
     retry: 2,
